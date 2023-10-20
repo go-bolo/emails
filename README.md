@@ -1,0 +1,1 @@
+# Go bolo email plugin
