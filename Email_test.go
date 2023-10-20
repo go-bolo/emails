@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	emails "github.com/go-bolo/email"
+	emails "github.com/go-bolo/emails"
 	"github.com/stretchr/testify/assert"
 )
 

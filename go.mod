@@ -1,4 +1,4 @@
-module github.com/go-bolo/email
+module github.com/go-bolo/emails
 
 go 1.20
 

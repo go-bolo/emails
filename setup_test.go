@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/go-bolo/bolo"
-	emails "github.com/go-bolo/email"
+	emails "github.com/go-bolo/emails"
 	"github.com/pkg/errors"
 )
 
