@@ -52,6 +52,10 @@ func (p *EmailPlugin) AddEmailTemplate(name string, t *EmailType) error {
 	return nil
 }
 
+func (p *EmailPlugin) GetMigrations() []*bolo.Migration {
+	return []*bolo.Migration{}
+}
+
 type PluginCfg struct{}
 
 func NewPlugin(cfg *PluginCfg) *EmailPlugin {
