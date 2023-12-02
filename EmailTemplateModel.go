@@ -34,7 +34,7 @@ func (r *EmailTemplateModel) ToJSON() string {
 
 // TableName - Table name
 func (EmailTemplateModel) TableName() string {
-	return "email-templates"
+	return "email_templates"
 }
 
 func (r *EmailTemplateModel) Render(ctx TemplateVariables, email *Email) error {

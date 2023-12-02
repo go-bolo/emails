@@ -132,15 +132,20 @@ func (r *Email) QueueToSend() error {
 		}).Debug("QueueToSend: Will send email to")
 	}
 
-	msgBrokerPlugin := app.GetPlugin("msg-broker").(*msgbroker.MSGBrokerPlugin)
-	c := msgBrokerPlugin.Client
+	msgBI := app.GetPlugin("msg-broker")
+	switch msgBrokerPlugin := msgBI.(type) {
+	case *msgbroker.MSGBrokerPlugin:
+		c := msgBrokerPlugin.Client
 
-	if r.ReplyTo == "" {
-		r.ReplyTo = cfgs.GetF("SMTP_REPLY_TO", "Monitor do Mercado <monitordomercado@linkysystems.com>")
+		if r.ReplyTo == "" {
+			r.ReplyTo = cfgs.GetF("SMTP_REPLY_TO", "Monitor do Mercado <monitordomercado@linkysystems.com>")
+		}
+
+		// publish in rabbit mq ...
+		return c.Publish("notification-email-delivery", r.ToJSON())
+	default:
+		return r.Send()
 	}
-
-	// publish in rabbit mq ...
-	return c.Publish("notification-email-delivery", r.ToJSON())
 }
 
 func (r *Email) Requeue() error {

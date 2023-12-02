@@ -2,6 +2,7 @@ package emails
 
 import (
 	"github.com/go-bolo/bolo"
+	migrations_email "github.com/go-bolo/emails/migrations"
 	"github.com/gookit/event"
 	"github.com/sirupsen/logrus"
 )
@@ -53,7 +54,9 @@ func (p *EmailPlugin) AddEmailTemplate(name string, t *EmailType) error {
 }
 
 func (p *EmailPlugin) GetMigrations() []*bolo.Migration {
-	return []*bolo.Migration{}
+	return []*bolo.Migration{
+		migrations_email.GetInitMigration(), // first migration
+	}
 }
 
 type PluginCfg struct{}
